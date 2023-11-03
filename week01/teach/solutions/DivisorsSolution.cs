@@ -17,11 +17,14 @@ public static class DivisorsSolution
     /// <returns>List of divisors</returns>
     private static List<int> FindDivisors(int number) {
         List<int> results = new List<int>();
+        int count = 0;
         for (int i = 1; i < number; ++i) {
             if (number % i == 0) {
                 results.Add(i);
             }
+            count++;
         }
+        Console.WriteLine(count);
         return results;
     }
 }
