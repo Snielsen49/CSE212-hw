@@ -85,8 +85,11 @@ public static class ArraysTester {
 
         for(int i = 0; i < amount; i++)
         {
+            //gets the last number 
             int lastnum = data[data.Count-1];
+            //deletes the last number 
             data.RemoveAt(data.Count-1);
+            //inserts the last number at the start 
             data.Insert(0,lastnum);
             
         }
