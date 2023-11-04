@@ -39,7 +39,28 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        //<plan> 
+        //create a array with the length that is given 
+        //create a loop that will take the int i and start it at the value of 0
+        //for every loop the multiple will be calculated by multiplying it by i+1 and then adding it to the array with i
+        //have i increase by 1
+        //have it loop tell i reaches the length value  
+        //return the array
+        //</plan>
+
+   
+        //array to store the results 
+        double[] results = new double[length];
+
+        //loops according to the length
+        for(int i = 0; i < length; i++)
+        {
+
+            //calculates and adds the value to the array 
+            results[i] = number*(i+1);
+            
+        }
+        return results; // replace this return statement with your own
     }
     
     /// <summary>
@@ -56,6 +77,19 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        //<plan>
+        //create a loop that will loop the amount of times given
+        //for each loop take the last number delete it and insert it into the first position (this will shift the whole array to the right)
+        //</plan
+
+        for(int i = 0; i < amount; i++)
+        {
+            int lastnum = data[data.Count-1];
+            data.RemoveAt(data.Count-1);
+            data.Insert(0,lastnum);
+            
+        }
 
     }
 }
