@@ -25,8 +25,12 @@ public class CustomerService {
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 1");
+        var test1 = new CustomerService(4);
+        test1.AddNewCustomer();
+        test1.ServeCustomer();
 
-        // Defect(s) Found: 
+
+        // Defect(s) Found: line 106 removes customer befor showing
 
         Console.WriteLine("=================");
 
@@ -99,9 +103,9 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
-        _queue.RemoveAt(0);
         var customer = _queue[0];
         Console.WriteLine(customer);
+        _queue.RemoveAt(0);
     }
 
     /// <summary>

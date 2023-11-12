@@ -25,7 +25,8 @@ public static class TakingTurns {
         // Console.WriteLine(players);    // This can be un-commented out for debug help
         while (players.Length > 0)
             players.GetNextPerson();
-        // Defect(s) Found: 
+        // Defect(s) Found: the Enqueue function in PersonQueue has the value insert at the front of the queue 
+        // fixes: changed the insert to a add function
 
         Console.WriteLine("---------");
 
@@ -48,7 +49,7 @@ public static class TakingTurns {
         while (players.Length > 0)
             players.GetNextPerson();
 
-        // Defect(s) Found: 
+        // Defect(s) Found: None
 
         Console.WriteLine("---------");
 
@@ -66,7 +67,8 @@ public static class TakingTurns {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: Tim would not repeat
+        // Fixes: Added a else if statement to check for a infinite turn 
 
         Console.WriteLine("---------");
 
@@ -76,6 +78,6 @@ public static class TakingTurns {
         Console.WriteLine("Test 4");
         players = new TakingTurnsQueue();
         players.GetNextPerson();
-        // Defect(s) Found:
+        // Defect(s) Found: None
     }
 }
