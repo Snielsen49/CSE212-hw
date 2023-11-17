@@ -8,6 +8,8 @@
  * GitHub repository, unshared Google Drive folder) is acceptable.
  *
  */
+using Microsoft.VisualBasic;
+
 public static class DisplaySums {
     public static void Run() {
         DisplaySumPairs(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
@@ -38,6 +40,17 @@ public static class DisplaySums {
     /// </summary>
     /// <param name="numbers">array of integers</param>
     private static void DisplaySumPairs(int[] numbers) {
-        // TODO Problem 2 - This should print pairs of numbers in the given array
+       var numset = new HashSet<int>();
+
+       foreach(int num in numbers)
+       {
+            if(numset.Contains(10-num))
+            {
+                Console.Write($"({num}+{10-num}=10) ");
+            }
+            numset.Add(num);
+       }
+       Console.WriteLine();
+
     }
 }
