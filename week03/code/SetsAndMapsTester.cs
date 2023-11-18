@@ -29,7 +29,7 @@ public static class SetsAndMapsTester {
         // Problem 2: Degree Summary
         // Sample Test Cases (may not be comprehensive) 
         Console.WriteLine("\n=========== Census TESTS ===========");
-        Console.WriteLine(string.Join(", ", SummarizeDegrees("census.txt")));
+        Console.WriteLine(string.Join(", ", SummarizeDegrees(@"C:\Users\soren\CSE212-hw\week03\code\census.txt")));
         // Results may be in a different order:
         // <Dictionary>{[Bachelors, 5355], [HS-grad, 10501], [11th, 1175],
         // [Masters, 1723], [9th, 514], [Some-college, 7291], [Assoc-acdm, 1067],
@@ -108,9 +108,35 @@ public static class SetsAndMapsTester {
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     private static void DisplayPairs(string[] words) {
-        // To display the pair correctly use something like:
-        // Console.WriteLine($"{word} & {pair}");
-        // Each pair of words should displayed on its own line.
+
+        var compare = new HashSet<string>();
+        foreach(string Word in words)
+        {
+            //splits the word 
+            char[] letters = Word.ToCharArray();
+
+            //special case
+            if(letters[0] == letters[1])
+            {
+
+            }
+            else
+            {
+                //checks for pairs
+                if(compare.Contains(string.Concat(letters)))
+                {
+                    //word has a pair 
+                    Console.Write($"{string.Concat(letters)}-{string.Concat(letters[1],letters[0])} ");
+                }
+                else
+                {
+                    //no pair will add for following checks 
+                    compare.Add(string.Concat(letters[1],letters[0]));
+                }
+            }
+
+
+        }
     }
 
     /// <summary>
@@ -131,7 +157,18 @@ public static class SetsAndMapsTester {
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
-            // Todo Problem 2 - ADD YOUR CODE HERE
+            //checks if the degree waas already part of the map
+            if(degrees.ContainsKey(fields[3]))
+            {
+                //adds to the degree count
+                degrees[fields[3]]++;
+            }
+            else
+            {
+                //adds the degree and starts count 
+                degrees.Add(fields[3],1);
+            }
+            
         }
 
         return degrees;
@@ -157,8 +194,43 @@ public static class SetsAndMapsTester {
     /// # Problem 3 #
     /// #############
     private static bool IsAnagram(string word1, string word2) {
-        // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        word1 = word1.Replace(" ", "").ToLower();
+        word2 = word2.Replace(" ", "").ToLower();
+        var letters = new Dictionary<char,int>();
+
+        //loops through each letter and saves a count
+        foreach (char letter in word1)
+        {
+            if(letters.ContainsKey(letter))
+            {
+                letters[letter]++;
+            }
+            else
+            {
+                letters.Add(letter,1);
+            }
+        }
+        //checks if the letters match 
+        foreach(char letter in word2)
+        {
+            if(letters.ContainsKey(letter))
+            {
+                letters[letter]--;
+                //if letter count = 0 removes letter from the dictionary 
+                if(letters[letter] == 0)
+                {
+                    letters.Remove(letter);
+                }
+            }
+            //the letter isnt in letters
+            else
+            {
+                return false;
+            }
+            
+        }
+        //checks if all letters are acounted for
+        return letters.Count() == 0;
     }
 
     /// <summary>
@@ -231,6 +303,30 @@ public static class SetsAndMapsTester {
 
         var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
         // 1. Add your code to map the json to the feature collection object
-        // 2. Print out each place a earthquake has happened today
+        
+       //Loops and displays the data
+        foreach(var Feature in featureCollection.Features)
+        {
+            Console.WriteLine($"{Feature.Properties.place} - Mag {Feature.Properties.mag}");
+        }
+
+        
     }
+
+    //creats objects to store the data 
+    public class FeatureCollection
+    {   
+        public List<Feature> Features { get; set; }
+    }
+    public class Feature
+        {
+            public Properties Properties { get; set; }
+
+        }
+    public class Properties
+        {
+            public string place { get; set; }
+            public decimal mag { get; set; }
+
+        }
 }

@@ -29,7 +29,17 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveLeft() {
-        // FILL IN CODE
+        bool [] position = _mazeMap[(_currX,_currY)];
+
+        // checks for walls 
+        if(position[0] && _currX !=1)
+        {
+            //moves
+            _currX--;
+        }
+        else{
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -37,7 +47,17 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveRight() {
-        // FILL IN CODE
+        bool [] position = _mazeMap[(_currX,_currY)];
+
+        // checks for walls 
+         if(position[1] && _currX != 6)
+        {
+            //moves
+            _currX++;
+        }
+        else{
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -45,7 +65,17 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveUp() {
-        // FILL IN CODE
+        bool [] position = _mazeMap[(_currX,_currY)];
+
+        // checks for walls 
+         if(position[2] && _currY != 1)
+        {
+            //moves
+            _currY--;
+        }
+        else{
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -53,7 +83,17 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveDown() {
-        // FILL IN CODE
+        bool [] position = _mazeMap[(_currX,_currY)];
+
+        // checks for walls 
+         if(position[3] && _currY != 6)
+        {
+            //moves
+            _currY++;
+        }
+        else{
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
     public void ShowStatus() {
