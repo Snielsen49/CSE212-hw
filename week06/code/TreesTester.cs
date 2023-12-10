@@ -37,6 +37,9 @@ public static class TreesTester {
         Console.WriteLine(tree.GetHeight()); // 3
         tree.Insert(12);
         Console.WriteLine(tree.GetHeight()); // 4
+        BinarySearchTree tree6 = new BinarySearchTree();
+        tree6.Insert(6);
+        Console.WriteLine(tree6.GetHeight()); // 1
 
         Console.WriteLine("\n=========== PROBLEM 5 TESTS ===========");
         var tree1 = CreateTreeFromSortedList(new[] { 10, 20, 30, 40, 50, 60 });

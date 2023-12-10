@@ -8,7 +8,12 @@ public class Node {
     }
 
     public void Insert(int value) {
-        if (value < Data) {
+        //The value is already in the BST
+        if (value == Data)
+        {
+            Console.WriteLine($"ERROR The BST already contains the value {value}");
+        }
+        else if (value < Data) {
             // Insert to the left
             if (Left is null)
                 Left = new Node(value);
@@ -25,12 +30,51 @@ public class Node {
     }
 
     public bool Contains(int value) {
-        // TODO Start Problem 2
-        return false;
+        //the vaule is in the BST
+        if (value == Data)
+        {
+            return true;
+        }
+        // Moving higher or to the right 
+        else if (value > Data && Right != null)
+        {
+            return Right.Contains(value);
+        }
+        //moving lower or to the left
+        else if (value < Data && Left != null)
+        {
+            return Left.Contains(value);
+        }
+        // the item is NOT in the BST
+        else
+        {
+            return false;
+        }
     }
 
     public int GetHeight() {
-        // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+        // more options to the right 
+        if (Left == null && Right != null)
+        {
+            return 1 + Right.GetHeight() ; 
+        }
+        // more options to the left 
+        else if (Right == null && Left != null)
+        {
+            return 1 + Left.GetHeight() ;
+        }
+        // no other options or paths 
+        else if (Right == null && Left == null)
+        {
+            return 1;
+        }
+        else
+        // base case and returns the bigest height 
+        {
+            int leftmax = Left.GetHeight() + 1;
+            int rightmax = Right.GetHeight() + 1;
+            return Math.Max(leftmax,rightmax);
+        }
     }
+
 }
